@@ -46,6 +46,7 @@
     <Compile Include="Pages\TaskDetailsPage.cs" />
     <Compile Include="Pages\TaskListPage.cs" />
     <Compile Include="AppExtensions.cs" />
+    <Compile Include="Pages\BasePage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

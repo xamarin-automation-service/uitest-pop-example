@@ -9,11 +9,8 @@ using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Querie
 
 namespace CrossPlatform
 {
-    public class TaskDetailsPage
+    public class TaskDetailsPage : BasePage
     {
-        readonly IApp app;
-        readonly Platform platform;
-
         readonly string NameField;
         readonly string NotesField;
         readonly string SaveButton;
@@ -23,41 +20,30 @@ namespace CrossPlatform
         readonly Query DoneCheck;
 
         public TaskDetailsPage(IApp app, Platform platform)
+            : base(app, platform, "menu_save_task", "Task Details")
         {
-            this.app = app;
-            this.platform = platform;
-
-            string pageTrait = null;
-
-            if (platform == Platform.Android)
+            if (OnAndroid)
             {
                 NameField = "txtName";
                 NotesField = "txtNotes";
                 SaveButton = "menu_save_task";
                 DeleteButton = "menu_delete_task";
                 DoneCheck = e => e.Marked("chkDone");
-
-                pageTrait = SaveButton;
             }
 
-            if (platform == Platform.iOS)
+            if (OniOS)
             {
                 NameField = "task name";
                 NotesField = "other task info";
                 SaveButton = "Save";
                 DeleteButton = "Delete";
                 DoneCheck = e => e.Class("UISwitch");
-
-                pageTrait = "Task Details";
             }
-
-            app.WaitForElement(pageTrait);
-            app.Screenshot("On task details page");
         }
 
         public TaskDetailsPage EnterTask(string name, string notes = null)
         {
-            if (platform == Platform.Android)
+            if (OnAndroid)
             {
                 app.EnterText(NameField, name);
                 app.Back();
@@ -68,7 +54,7 @@ namespace CrossPlatform
                 }
             }
 
-            if (platform == Platform.iOS)
+            if (OniOS)
             {
                 app.EnterText(NameField, name);
                 app.PressEnter();
@@ -95,13 +81,13 @@ namespace CrossPlatform
 
         public TaskDetailsPage VerifyDone(bool done = true)
         {
-            if (platform == Platform.Android)
+            if (OnAndroid)
             {
                 Assert.True((bool)app.Query(x => x.Marked("chkDone").Invoke("isChecked")).First());
                 app.Screenshot("Task completed");
             }
 
-            if (platform == Platform.iOS)
+            if (OniOS)
             {
                 Assert.AreEqual(1, app.Query(x => x.Class("UISwitch").Invoke("isOn")).First());
                 app.Screenshot("Task completed");

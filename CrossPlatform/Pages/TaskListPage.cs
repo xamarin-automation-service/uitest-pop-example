@@ -6,39 +6,25 @@ using System.Linq;
 
 namespace CrossPlatform
 {
-    public class TaskListPage
+    public class TaskListPage : BasePage
     {
-        readonly IApp app;
-        readonly Platform platform;
-
         readonly string AddTaskButton;
         readonly Func<AppQuery, AppQuery> FirstTask;
 
         public TaskListPage(IApp app, Platform platform)
+            : base(app, platform, "menu_add_task", "Tasky")
         {
-            this.app = app;
-            this.platform = platform;
-
-            string pageTrait = null;
-
-            if (platform == Platform.Android)
+            if (OnAndroid)
             {
                 AddTaskButton = "menu_add_task";
                 FirstTask = x => x.Id("lstTasks").Child(0);
-
-                pageTrait = AddTaskButton;
             }
 
-            if (platform == Platform.iOS)
+            if (OniOS)
             {
                 AddTaskButton = "Add";
                 FirstTask = x => x.Class("UITableViewWrapperView").Child(0);
-
-                pageTrait = "Tasky";
             }
-
-            app.WaitForElement(pageTrait);
-            app.Screenshot("On task list page");
         }
 
         public void GoToAddTask()
@@ -75,7 +61,7 @@ namespace CrossPlatform
         public TaskListPage VerifyTaskDone(string name = null, bool done = true)
         {
             // Method not applicable to iOS
-            if (platform == Platform.Android)
+            if (OnAndroid)
             {
                 Func<AppQuery, AppQuery> checkMark;
                 
@@ -98,7 +84,7 @@ namespace CrossPlatform
         public TaskListPage DeleteTask(string name)
         {
             // Method not applicable to Android
-            if (platform == Platform.iOS)
+            if (OniOS)
             {
                 app.SwipeLeftOnElement(app.Query(e => e.Marked(name).Parent(0))[0]);
                 app.Tap("Delete");
