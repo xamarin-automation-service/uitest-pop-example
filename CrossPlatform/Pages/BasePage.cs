@@ -5,20 +5,18 @@ using Xamarin.UITest.Queries;
 
 namespace CrossPlatform
 {
-    public abstract class BasePage
+    public class BasePage
     {
         protected readonly IApp app;
-        protected readonly bool OnAndroid = false;
-        protected readonly bool OniOS = false;
+        protected readonly bool OnAndroid;
+        protected readonly bool OniOS;
 
         protected BasePage(IApp app, Platform platform)
         {
             this.app = app;
 
-            if (platform == Platform.Android)
-                OnAndroid = true;
-            else if (platform == Platform.iOS)
-                OniOS = true;
+            OnAndroid = platform == Platform.Android;
+            OniOS = platform == Platform.iOS;
         }
 
         protected BasePage(IApp app, Platform platform, Func<AppQuery, AppQuery> androidTrait, Func<AppQuery, AppQuery> iOSTrait)
@@ -28,7 +26,7 @@ namespace CrossPlatform
                 app.WaitForElement(androidTrait);
             if (OniOS)
                 app.WaitForElement(iOSTrait);
-            
+
             app.Screenshot("On " + this.GetType().Name);
         }
 
