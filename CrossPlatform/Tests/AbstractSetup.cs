@@ -22,14 +22,14 @@ namespace CrossPlatform
 
         protected void EnterTask(string name, string notes = null)
         {
-            new TaskListPage(app, platform)
+            new TaskListPage()
                 .GoToAddTask();
 
-            new TaskDetailsPage(app, platform)
+            new TaskDetailsPage()
                 .EnterTask(name, notes)
                 .Save();
 
-            new TaskListPage(app, platform)
+            new TaskListPage()
                 .VerifyTaskExists(name);
         }
     }
