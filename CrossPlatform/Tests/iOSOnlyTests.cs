@@ -19,7 +19,7 @@ namespace CrossPlatform
 
             EnterTask(taskName, "Cross-platform UITest");
 
-            new TaskListPage(app, platform)
+            new TaskListPage()
                 .DeleteTask(taskName)
                 .VerifyTaskDoesNotExist(taskName);
         }

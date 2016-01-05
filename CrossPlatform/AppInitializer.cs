@@ -6,26 +6,40 @@ namespace CrossPlatform
 {
     static class AppInitializer
     {
-        const string apiKey = "YOUR_API_KEY";
         const string apkPath = "../../../TaskyDroid.apk";
         const string appPath = "../../../TaskyiOS.app";
         const string ipaBundleId = "com.xamarin.samples.taskytouch";
+
+        private static IApp app;
+        public static IApp App
+        {
+            get
+            {
+                if (app == null)
+                    throw new NullReferenceException("'AppInitializer.App' not set. Call 'AppInitializer.StartApp(platform)' before trying to access it.");
+                return app;
+            }
+        }
 
         public static IApp StartApp(Platform platform)
         {
             if (platform == Platform.Android)
             {
-                return ConfigureApp
+                app = ConfigureApp
                     .Android
                     .ApkFile(apkPath)
                     .StartApp();
             }
+            else
+            {
+                app = ConfigureApp
+                        .iOS
+                        .AppBundle(appPath)
+//                        .InstalledApp(ipaBundleId)
+                        .StartApp();
+            }
 
-            return ConfigureApp
-                    .iOS
-                    .AppBundle(appPath)
-//                    .InstalledApp(ipaBundleId)
-                    .StartApp();
+            return app;
         }
     }
 }

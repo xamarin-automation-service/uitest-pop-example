@@ -11,8 +11,8 @@ namespace CrossPlatform
         readonly string AddTaskButton;
         readonly Func<AppQuery, AppQuery> FirstTask;
 
-        public TaskListPage(IApp app, Platform platform)
-            : base(app, platform, "menu_add_task", "Tasky")
+        public TaskListPage()
+            : base("menu_add_task", "Tasky")
         {
             if (OnAndroid)
             {

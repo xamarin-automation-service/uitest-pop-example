@@ -26,13 +26,13 @@ namespace CrossPlatform
 
             EnterTask(taskName, "Cross-platform UITest");
 
-            new TaskListPage(app, platform)
+            new TaskListPage()
                 .SelectTask();
 
-            new TaskDetailsPage(app, platform)
+            new TaskDetailsPage()
                 .Delete();
 
-            new TaskListPage(app, platform)
+            new TaskListPage()
                 .VerifyTaskDoesNotExist(taskName);
         }
 
@@ -43,15 +43,15 @@ namespace CrossPlatform
 
             EnterTask(taskName, "Cross-platform UITest");
 
-            new TaskListPage(app, platform)
+            new TaskListPage()
                 .SelectTask();
 
-            new TaskDetailsPage(app, platform)
+            new TaskDetailsPage()
                 .TapDone()
                 .VerifyDone()
                 .Save();
 
-            new TaskListPage(app, platform)
+            new TaskListPage()
                 .VerifyTaskDone(taskName, true);
         }
 

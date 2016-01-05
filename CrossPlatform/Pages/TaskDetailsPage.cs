@@ -19,8 +19,8 @@ namespace CrossPlatform
         // Query aliases Func<AppQuery, AppQuery> via the above using statement
         readonly Query DoneCheck;
 
-        public TaskDetailsPage(IApp app, Platform platform)
-            : base(app, platform, "menu_save_task", "Task Details")
+        public TaskDetailsPage()
+            : base("menu_save_task", "Task Details")
         {
             if (OnAndroid)
             {
