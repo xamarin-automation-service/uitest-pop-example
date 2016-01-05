@@ -46,11 +46,9 @@ namespace CrossPlatform
             if (OnAndroid)
             {
                 app.EnterText(NameField, name);
-                app.Back();
                 if (notes != null)
                 {
                     app.EnterText(NotesField, notes);
-                    app.Back();
                 }
             }
 
