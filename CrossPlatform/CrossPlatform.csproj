@@ -41,12 +41,12 @@
   <ItemGroup>
     <Compile Include="AppInitializer.cs" />
     <Compile Include="Tests\TaskyTests.cs" />
-    <Compile Include="Tests\AbstractSetup.cs" />
     <Compile Include="Tests\iOSOnlyTests.cs" />
     <Compile Include="Pages\TaskDetailsPage.cs" />
     <Compile Include="Pages\TaskListPage.cs" />
     <Compile Include="AppExtensions.cs" />
-    <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="AbstractSetup.cs" />
+    <Compile Include="BasePage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
