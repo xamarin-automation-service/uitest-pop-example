@@ -3,13 +3,15 @@ using NUnit.Framework;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 using System.Linq;
+using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
+
 
 namespace CrossPlatform
 {
     public class TaskListPage : BasePage
     {
         readonly string AddTaskButton;
-        readonly Func<AppQuery, AppQuery> FirstTask;
+        readonly Query FirstTask;
 
         public TaskListPage()
             : base("menu_add_task", "Tasky")
@@ -18,6 +20,7 @@ namespace CrossPlatform
             {
                 AddTaskButton = "menu_add_task";
                 FirstTask = x => x.Id("lstTasks").Child(0);
+
             }
 
             if (OniOS)
@@ -29,6 +32,7 @@ namespace CrossPlatform
 
         public void GoToAddTask()
         {
+            app.WaitForElement(AddTaskButton);
             app.Tap(AddTaskButton);
         }
 
@@ -63,7 +67,7 @@ namespace CrossPlatform
             // Method not applicable to iOS
             if (OnAndroid)
             {
-                Func<AppQuery, AppQuery> checkMark;
+                Query checkMark;
                 
                 if (name == null)
                     checkMark = x => x.Id("lstTasks").Child().Child().Id("checkMark");
@@ -86,7 +90,7 @@ namespace CrossPlatform
             // Method not applicable to Android
             if (OniOS)
             {
-                app.SwipeLeftOnElement(app.Query(e => e.Marked(name).Parent(0))[0]);
+                app.SwipeRightToLeft();
                 app.Tap("Delete");
             }
 

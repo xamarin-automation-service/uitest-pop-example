@@ -4,7 +4,6 @@ using Xamarin.UITest;
 
 namespace CrossPlatform
 {
-    [TestFixture(Platform.iOS)]
     public class iOSOnlyTests : AbstractSetup
     {
         public iOSOnlyTests(Platform platform)
@@ -15,13 +14,21 @@ namespace CrossPlatform
         [Test]
         public void AddAndDeleteTaskFromList()
         {
-            var taskName = "Finish example";
+            if (OnAndroid)
+            {
+                Assert.Ignore("Feature not implemented in Android");
+            }
+            else
+            {
 
-            EnterTask(taskName, "Cross-platform UITest");
+                var taskName = "Finish example";
 
-            new TaskListPage()
-                .DeleteTask(taskName)
-                .VerifyTaskDoesNotExist(taskName);
+                EnterTask(taskName, "Cross-platform UITest");
+
+                new TaskListPage()
+                    .DeleteTask(taskName)
+                    .VerifyTaskDoesNotExist(taskName);
+            }
         }
     }
 }

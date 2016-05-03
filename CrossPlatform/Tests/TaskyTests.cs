@@ -4,8 +4,6 @@ using Xamarin.UITest;
 
 namespace CrossPlatform
 {
-    [TestFixture(Platform.Android)]
-    [TestFixture(Platform.iOS)]
     public class TaskyTests : AbstractSetup
     {
         public TaskyTests(Platform platform)

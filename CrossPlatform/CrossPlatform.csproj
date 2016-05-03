@@ -35,7 +35,7 @@
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.UITest">
-      <HintPath>..\packages\Xamarin.UITest.1.2.0\lib\Xamarin.UITest.dll</HintPath>
+      <HintPath>..\packages\Xamarin.UITest.1.3.7\lib\Xamarin.UITest.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -44,7 +44,6 @@
     <Compile Include="Tests\iOSOnlyTests.cs" />
     <Compile Include="Pages\TaskDetailsPage.cs" />
     <Compile Include="Pages\TaskListPage.cs" />
-    <Compile Include="AppExtensions.cs" />
     <Compile Include="AbstractSetup.cs" />
     <Compile Include="BasePage.cs" />
   </ItemGroup>
