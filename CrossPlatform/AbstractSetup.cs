@@ -32,9 +32,8 @@ namespace CrossPlatform
 
         protected void EnterTask(string name, string notes = null)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(2));
-            //new TaskListPage()
-            //    .GoToAddTask();
+            new TaskListPage()
+                .GoToAddTask();
 
             new TaskDetailsPage()
                 .EnterTask(name, notes)
