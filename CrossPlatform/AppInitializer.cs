@@ -35,7 +35,8 @@ namespace CrossPlatform
                 app = ConfigureApp
                         .iOS
                         .AppBundle(appPath)
-//                        .InstalledApp(ipaBundleId)
+                        //This is used to run an ipa on a physical ios device
+                        //.InstalledApp(ipaBundleId)
                         .StartApp();
             }
 

@@ -7,7 +7,7 @@ using Xamarin.UITest.iOS;
 
 namespace CrossPlatform
 {
-    public class BasePage
+    public abstract class BasePage
     {
         protected readonly IApp app;
         protected readonly bool OnAndroid;

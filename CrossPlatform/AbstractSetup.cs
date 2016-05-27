@@ -9,7 +9,7 @@ namespace CrossPlatform
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
-    public class AbstractSetup
+    public abstract class AbstractSetup
     {
         protected IApp app;
         protected Platform platform;
