@@ -36,7 +36,6 @@ namespace CrossPlatform
 
         public void GoToAddTask()
         {
-            app.Repl();
             app.WaitForElement(AddTaskButton);
             app.Screenshot("Tapping add task button");
             app.Tap(AddTaskButton);
