@@ -20,7 +20,6 @@ namespace CrossPlatform
             }
             else
             {
-
                 var taskName = "Finish example";
 
                 EnterTask(taskName, "Cross-platform UITest");

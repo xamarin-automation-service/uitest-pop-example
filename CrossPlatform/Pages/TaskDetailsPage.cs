@@ -1,7 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
 using Xamarin.UITest;
-using Xamarin.UITest.Queries;
 using System.Linq;
 
 // Aliases Func<AppQuery, AppQuery> with Query
@@ -11,33 +10,31 @@ namespace CrossPlatform
 {
     public class TaskDetailsPage : BasePage
     {
-        readonly string NameField;
-        readonly string NotesField;
-        readonly string SaveButton;
-        readonly string DeleteButton;
-
-        // Query aliases Func<AppQuery, AppQuery> via the above using statement
-        readonly Query DoneCheck;
+        readonly Query NameField;
+        readonly Query NotesField;
+        readonly Query SaveButton;
+        readonly Query DeleteButton;
+        readonly Query DoneIndicator;
 
         public TaskDetailsPage()
-            : base("menu_save_task", "Task Details")
+            : base(x => x.Marked("menu_save_task"), x => x.Marked("Task Details"))
         {
             if (OnAndroid)
             {
-                NameField = "txtName";
-                NotesField = "txtNotes";
-                SaveButton = "menu_save_task";
-                DeleteButton = "menu_delete_task";
-                DoneCheck = e => e.Marked("chkDone");
+                NameField = x => x.Marked("txtName");
+                NotesField = x => x.Marked("txtNotes");
+                SaveButton = x => x.Marked("menu_save_task");
+                DeleteButton = x => x.Marked("menu_delete_task");
+                DoneIndicator = x => x.Marked("chkDone");
             }
 
             if (OniOS)
             {
-                NameField = "task name";
-                NotesField = "other task info";
-                SaveButton = "Save";
-                DeleteButton = "Delete";
-                DoneCheck = e => e.Class("UISwitch");
+                NameField = x => x.Marked("task name");
+                NotesField = x => x.Marked("other task info");
+                SaveButton = x => x.Marked("Save");
+                DeleteButton = x => x.Marked("Delete");
+                DoneIndicator = x => x.Class("UISwitch");
             }
         }
 
@@ -46,20 +43,19 @@ namespace CrossPlatform
             if (OnAndroid)
             {
                 app.EnterText(NameField, name);
+
                 if (notes != null)
-                {
                     app.EnterText(NotesField, notes);
-                }
             }
 
             if (OniOS)
             {
                 app.EnterText(NameField, name);
                 app.PressEnter();
+
                 if (notes != null)
-                {
                     app.EnterText(NotesField, notes);
-                }
+
                 app.PressEnter();
             }
 
@@ -71,7 +67,7 @@ namespace CrossPlatform
         public TaskDetailsPage TapDone()
         {
             app.DismissKeyboard();
-            app.Tap(DoneCheck);
+            app.Tap(DoneIndicator);
             app.Screenshot("Set Done");
 
             return this;
@@ -81,13 +77,13 @@ namespace CrossPlatform
         {
             if (OnAndroid)
             {
-                Assert.True((bool)app.Query(x => x.Marked("chkDone").Invoke("isChecked")).First());
+                Assert.True((bool)app.Query(x => DoneIndicator(x).Invoke("isChecked")).First());
                 app.Screenshot("Task completed");
             }
 
             if (OniOS)
             {
-                Assert.AreEqual(1, app.Query(x => x.Class("UISwitch").Invoke("isOn")).First());
+                Assert.AreEqual(1, (int)app.Query(x => DoneIndicator(x).Invoke("isOn")).First());
                 app.Screenshot("Task completed");
             }
 
@@ -96,11 +92,13 @@ namespace CrossPlatform
 
         public void Save()
         {
+            app.Screenshot("Tapping save");
             app.Tap(SaveButton);
         }
 
         public void Delete()
         {
+            app.Screenshot("Tapping delete");
             app.Tap(DeleteButton);
         }
     }
