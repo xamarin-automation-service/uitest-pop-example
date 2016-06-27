@@ -42,6 +42,8 @@ Thumbs.db
 
 # Binaries
 *.ipa
+*.app
+*.apk
 
 # Archives
 *.zip
