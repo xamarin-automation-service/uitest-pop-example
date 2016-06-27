@@ -6,8 +6,8 @@ namespace CrossPlatform
 {
     static class AppInitializer
     {
-        const string apkPath = "../../../TaskyDroid.apk";
-        const string appPath = "../../../TaskyiOS.app";
+        const string apkPath = "../../../Binaries/TaskyDroid.apk";
+        const string appPath = "../../../Binaries/TaskyiOS.app";
         const string ipaBundleId = "com.xamarin.samples.taskytouch";
 
         private static IApp app;

@@ -42,8 +42,6 @@ Thumbs.db
 # Automation additions
 
 # Binaries
-*.apk
-*.app
 *.ipa
 
 # Archives
