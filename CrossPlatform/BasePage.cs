@@ -1,19 +1,20 @@
 ﻿using System;
 using NUnit.Framework;
 using Xamarin.UITest;
-using Xamarin.UITest.Queries;
 using Xamarin.UITest.Android;
 using Xamarin.UITest.iOS;
+using Xamarin.UITest.Queries;
 
 namespace CrossPlatform
 {
     public abstract class BasePage
     {
         protected readonly IApp app;
-        protected readonly bool OnAndroid;
-        protected readonly bool OniOS;
 
-        protected Func<AppQuery, AppQuery> Trait;
+        protected bool OnAndroid { get; private set; }
+        protected bool OniOS { get; private set; }
+
+        protected Func<AppQuery, AppQuery> Trait { get; set; }
 
         protected BasePage()
         {
@@ -85,6 +86,7 @@ namespace CrossPlatform
             if (OnAndroid)
             {
             }
+
             if (OniOS)
             {
             }
@@ -93,5 +95,3 @@ namespace CrossPlatform
         #endregion
     }
 }
-
-

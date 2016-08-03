@@ -1,16 +1,15 @@
 ﻿using System;
-using NUnit.Framework;
 using Xamarin.UITest;
 
 namespace CrossPlatform
 {
     static class AppInitializer
     {
-        const string apkPath = "../../../Binaries/TaskyDroid.apk";
-        const string appPath = "../../../Binaries/TaskyiOS.app";
-        const string ipaBundleId = "com.xamarin.samples.taskytouch";
+        const string ApkPath = "../../../Binaries/TaskyDroid.apk";
+        const string AppPath = "../../../Binaries/TaskyiOS.app";
+        const string IpaBundleId = "com.xamarin.samples.taskytouch";
 
-        private static IApp app;
+        static IApp app;
         public static IApp App
         {
             get
@@ -27,21 +26,20 @@ namespace CrossPlatform
             {
                 app = ConfigureApp
                     .Android
-                    .ApkFile(apkPath)
+                    .ApkFile(ApkPath)
                     .StartApp();
             }
             else
             {
                 app = ConfigureApp
-                        .iOS
-                        .AppBundle(appPath)
-                        //This is used to run an ipa on a physical ios device
-                        //.InstalledApp(ipaBundleId)
-                        .StartApp();
+                    .iOS
+                    .AppBundle(AppPath)
+                    // This is used to run an ipa on a physical ios device
+                    //.InstalledApp(ipaBundleId)
+                    .StartApp();
             }
 
             return app;
         }
     }
 }
-

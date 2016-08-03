@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using NUnit.Framework;
 using Xamarin.UITest;
 using Xamarin.UITest.Android;
@@ -13,8 +12,9 @@ namespace CrossPlatform
     {
         protected IApp app;
         protected Platform platform;
-        protected bool OnAndroid;
-        protected bool OniOS;
+
+        protected bool OnAndroid { get; set; }
+        protected bool OniOS { get; set; }
 
         public AbstractSetup(Platform platform)
         {
@@ -44,4 +44,3 @@ namespace CrossPlatform
         }
     }
 }
-

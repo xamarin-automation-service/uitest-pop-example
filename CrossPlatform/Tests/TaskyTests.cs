@@ -55,8 +55,5 @@ namespace CrossPlatform
             new TaskListPage()
                 .VerifyTaskDone(taskName, true);
         }
-
-
     }
 }
-

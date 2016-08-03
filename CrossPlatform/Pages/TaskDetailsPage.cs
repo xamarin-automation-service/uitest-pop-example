@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using Xamarin.UITest;
-using System.Linq;
 
 // Aliases Func<AppQuery, AppQuery> with Query
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
@@ -10,31 +10,31 @@ namespace CrossPlatform
 {
     public class TaskDetailsPage : BasePage
     {
-        readonly Query NameField;
-        readonly Query NotesField;
-        readonly Query SaveButton;
-        readonly Query DeleteButton;
-        readonly Query DoneIndicator;
+        readonly Query nameField;
+        readonly Query notesField;
+        readonly Query saveButton;
+        readonly Query deleteButton;
+        readonly Query doneIndicator;
 
         public TaskDetailsPage()
             : base(x => x.Marked("menu_save_task"), x => x.Marked("Task Details"))
         {
             if (OnAndroid)
             {
-                NameField = x => x.Marked("txtName");
-                NotesField = x => x.Marked("txtNotes");
-                SaveButton = x => x.Marked("menu_save_task");
-                DeleteButton = x => x.Marked("menu_delete_task");
-                DoneIndicator = x => x.Marked("chkDone");
+                nameField = x => x.Marked("txtName");
+                notesField = x => x.Marked("txtNotes");
+                saveButton = x => x.Marked("menu_save_task");
+                deleteButton = x => x.Marked("menu_delete_task");
+                doneIndicator = x => x.Marked("chkDone");
             }
 
             if (OniOS)
             {
-                NameField = x => x.Marked("task name");
-                NotesField = x => x.Marked("other task info");
-                SaveButton = x => x.Marked("Save");
-                DeleteButton = x => x.Marked("Delete");
-                DoneIndicator = x => x.Class("UISwitch");
+                nameField = x => x.Marked("task name");
+                notesField = x => x.Marked("other task info");
+                saveButton = x => x.Marked("Save");
+                deleteButton = x => x.Marked("Delete");
+                doneIndicator = x => x.Class("UISwitch");
             }
         }
 
@@ -42,19 +42,19 @@ namespace CrossPlatform
         {
             if (OnAndroid)
             {
-                app.EnterText(NameField, name);
+                app.EnterText(nameField, name);
 
                 if (notes != null)
-                    app.EnterText(NotesField, notes);
+                    app.EnterText(notesField, notes);
             }
 
             if (OniOS)
             {
-                app.EnterText(NameField, name);
+                app.EnterText(nameField, name);
                 app.PressEnter();
 
                 if (notes != null)
-                    app.EnterText(NotesField, notes);
+                    app.EnterText(notesField, notes);
 
                 app.PressEnter();
             }
@@ -67,7 +67,7 @@ namespace CrossPlatform
         public TaskDetailsPage TapDone()
         {
             app.DismissKeyboard();
-            app.Tap(DoneIndicator);
+            app.Tap(doneIndicator);
             app.Screenshot("Set Done");
 
             return this;
@@ -77,13 +77,13 @@ namespace CrossPlatform
         {
             if (OnAndroid)
             {
-                Assert.True((bool)app.Query(x => DoneIndicator(x).Invoke("isChecked")).First());
+                Assert.True((bool)app.Query(x => doneIndicator(x).Invoke("isChecked")).First());
                 app.Screenshot("Task completed");
             }
 
             if (OniOS)
             {
-                Assert.AreEqual(1, (int)app.Query(x => DoneIndicator(x).Invoke("isOn")).First());
+                Assert.AreEqual(1, (int)app.Query(x => doneIndicator(x).Invoke("isOn")).First());
                 app.Screenshot("Task completed");
             }
 
@@ -93,14 +93,13 @@ namespace CrossPlatform
         public void Save()
         {
             app.Screenshot("Tapping save");
-            app.Tap(SaveButton);
+            app.Tap(saveButton);
         }
 
         public void Delete()
         {
             app.Screenshot("Tapping delete");
-            app.Tap(DeleteButton);
+            app.Tap(deleteButton);
         }
     }
 }
-

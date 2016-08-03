@@ -9,46 +9,46 @@ namespace CrossPlatform
 {
     public class TaskListPage : BasePage
     {
-        readonly Query AddTaskButton;
-        readonly Query FirstTask;
-        readonly Func<string, Query> CheckMarkForTask;
-        readonly Func<string, Query> TaskListItem;
-        readonly Query DeleteButton;
+        readonly Query addTaskButton;
+        readonly Query firstTask;
+        readonly Query deleteButton;
+        readonly Func<string, Query> checkMarkForTask;
+        readonly Func<string, Query> taskListItem;
 
         public TaskListPage()
             : base(x => x.Marked("menu_add_task"), x => x.Marked("Tasky"))
         {
             if (OnAndroid)
             {
-                AddTaskButton = x => x.Marked("menu_add_task");
-                FirstTask = x => x.Id("lstTasks").Child(0);
-                CheckMarkForTask = taskName => x => x.Marked(taskName).Parent().Sibling().Id("checkMark");
+                addTaskButton = x => x.Marked("menu_add_task");
+                firstTask = x => x.Id("lstTasks").Child(0);
+                checkMarkForTask = taskName => x => x.Marked(taskName).Parent().Sibling().Id("checkMark");
             }
 
             if (OniOS)
             {
-                AddTaskButton = x => x.Marked("Add");
-                FirstTask = x => x.Class("UITableViewWrapperView").Child(0);
-                TaskListItem = name => x => x.Class("UITableViewCell").Text(name);
-                DeleteButton = x => x.Marked("Delete");
+                addTaskButton = x => x.Marked("Add");
+                firstTask = x => x.Class("UITableViewWrapperView").Child(0);
+                taskListItem = name => x => x.Class("UITableViewCell").Text(name);
+                deleteButton = x => x.Marked("Delete");
             }
         }
 
         public void GoToAddTask()
         {
-            app.WaitForElement(AddTaskButton);
+            app.WaitForElement(addTaskButton);
             app.Screenshot("Tapping add task button");
-            app.Tap(AddTaskButton);
+            app.Tap(addTaskButton);
         }
 
         public void SelectTask(string name = null)
         {
-            app.WaitForElement(FirstTask);
+            app.WaitForElement(firstTask);
 
             if (name == null)
             {
                 app.Screenshot("Selecting first task");
-                app.Tap(FirstTask);
+                app.Tap(firstTask);
             }
             else
             {
@@ -80,12 +80,12 @@ namespace CrossPlatform
             {
                 if (done)
                 {
-                    app.WaitForElement(CheckMarkForTask(name));
+                    app.WaitForElement(checkMarkForTask(name));
                     app.Screenshot("Task is done");
                 }
                 else
                 {
-                    app.WaitForNoElement(CheckMarkForTask(name));
+                    app.WaitForNoElement(checkMarkForTask(name));
                     app.Screenshot("Task is not done");
                 }
             }
@@ -98,8 +98,8 @@ namespace CrossPlatform
             // Method not applicable to Android
             if (OniOS)
             {
-                app.SwipeRightToLeft(TaskListItem(name));
-                app.Tap(DeleteButton);
+                app.SwipeRightToLeft(taskListItem(name));
+                app.Tap(deleteButton);
 
                 app.Screenshot($"Task deleted: '{name}'");
             }
@@ -108,4 +108,3 @@ namespace CrossPlatform
         }
     }
 }
-
