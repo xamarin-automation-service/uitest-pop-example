@@ -176,6 +176,8 @@ Use [backdoor methods](https://developer.xamarin.com/guides/testcloud/uitest/wor
 * **Avoid branching in general (`if`, `else` and `try`, `catch`) -** These are warning signs that you are not being as deterministic as you could be. They can be useful in certain situations, but be conscious about whether or not you can use an assertion instead.
 
 * **Use assertions (`WaitForElement`, `WaitForNoElement`, and `Assert`) -** We write tests to confirm app behavior, assertions are essential to confirm conditions. Best practice would be to assert following every action.
+
+* **Take many screenshots -** In Test Cloud, screenshots are the best way to see every step of a test's execution and visually identify bugs. Best practice would be to take a screenshot following every assertion (ie do some action, make assertion, take screenshot).
 	
 * **Try not to do anything randomly -** Test results should be repeatable between test runs, randomness inherently takes this away.
 	
