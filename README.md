@@ -163,11 +163,23 @@ There are several rules that we follow to make our version of the page object pa
 
 ## General testing suggestions
 
-### 1. Split tests up into small chunks wherever possible
+### 1. Make each test self contained
 
-Use [backdoor methods](https://developer.xamarin.com/guides/testcloud/uitest/working-with/backdoors/) to put the app in a particular "clean" state before each test and to navigate quickly to the area being tested. If reaching a certain app state is time consuming, backdoor methods can provide a useful alternative.
+Every test in your test suite should be able to run on its own without depending on any other tests to successfully run beforehand. Every test should start with a clean slate, as if the app was just installed on the phone.
 
-### 2. Be as deterministic as possible
+For example, you should not have a single test that logs in to your app at the beginning of your suite and then have every subsequent test assume that the app is already logged in. If the log in test were to fail for any reason, every other test in the suite that relied on it would also fail. 
+
+In order to save on valuable time, you can use [backdoor methods](https://developer.xamarin.com/guides/testcloud/uitest/working-with/backdoors/) to speed up repetitive setup tasks like logging in. You can also use backdoor methods to reset the app and put it in a particular "clean" state before each test starts.
+
+### 2. Split tests up into small chunks wherever possible
+
+Long tests are just as bad as interdependent tests. If the first part of a long test fails, then it won't finish the rest of the test.
+
+For example, it's better to have one test to log in, one test to search for an item, and one test to purchase an item. This way, with three separate tests, even if there is a bug in the search feature you can still test the purchase feature.
+
+[Backdoor methods](https://developer.xamarin.com/guides/testcloud/uitest/working-with/backdoors/) can, again, provide a fast way to skip some parts of a long process and put the app into a certain state. For example, you could use a backdoor to add a product to your shopping cart before running a check out test.
+
+### 3. Be as deterministic as possible
 
 * **Use backdoors to set up the app -** Backdoors can create a consistent app state so that every test starts with a clean slate.
 
