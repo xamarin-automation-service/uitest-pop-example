@@ -1,8 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
 using Xamarin.UITest;
-using Xamarin.UITest.Android;
-using Xamarin.UITest.iOS;
 
 namespace CrossPlatform
 {
@@ -16,7 +14,7 @@ namespace CrossPlatform
         protected bool OnAndroid { get; set; }
         protected bool OniOS { get; set; }
 
-        public AbstractSetup(Platform platform)
+        protected AbstractSetup(Platform platform)
         {
             this.platform = platform;
         }
@@ -26,8 +24,8 @@ namespace CrossPlatform
         {
             app = AppInitializer.StartApp(platform);
 
-            OnAndroid = app.GetType() == typeof(AndroidApp);
-            OniOS = app.GetType() == typeof(iOSApp);
+            OnAndroid = AppInitializer.Platform == Platform.Android;
+            OniOS = AppInitializer.Platform == Platform.iOS;
         }
 
         protected void EnterTask(string name, string notes = null)

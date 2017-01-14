@@ -16,8 +16,19 @@ namespace CrossPlatform
         readonly Query deleteButton;
         readonly Query doneIndicator;
 
+        protected override Trait Trait
+        {
+            get
+            {
+                return new Trait
+                {
+                    Android = x => x.Marked("menu_save_task"),
+                    iOS = x => x.Marked("Task Details")
+                };
+            }
+        }
+
         public TaskDetailsPage()
-            : base(x => x.Marked("menu_save_task"), x => x.Marked("Task Details"))
         {
             if (OnAndroid)
             {
@@ -83,7 +94,7 @@ namespace CrossPlatform
 
             if (OniOS)
             {
-                Assert.AreEqual(1, (int)app.Query(x => doneIndicator(x).Invoke("isOn")).First());
+                Assert.AreEqual(1, app.Query(x => doneIndicator(x).Invoke("isOn")).First());
                 app.Screenshot("Task completed");
             }
 
