@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.UITest.POP</id>
+    <version>0.0.1</version>
+    <authors>ethand</authors>
+    <owners>ethand</owners>
+    <projectUrl>https://github.com/xamarin-automation-service/uitest-pop-example</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Xamarin.UITest helper classes for implementing the page object pattern
+
+      Using this package only generates the necessary base classes to implement the pattern as described in the project site.
+
+      *The package is safe to remove after the generated files have been added
+    </description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Xamarin.UITest PageObjectPattern</tags>
+    <dependencies>
+      <dependency id="Xamarin.UITest" version="2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+      <file src="content/AbstractSetup.cs.pp" target="content/portable-net45/AbstractSetup.cs.pp" />
+      <file src="content/AppInitializer.txt.pp" target="content/portable-net45/AppInitializer.txt.pp"/>
+      <file src="content/BasePage.cs.pp" target="content/portable-net45/BasePage.cs.pp"/>
+      <file src="content/Trait.cs.pp" target="content/portable-net45/Trait.cs.pp"/>
+      <file src="readme.txt" target="readme.txt"/>
+  </files>
+</package>
