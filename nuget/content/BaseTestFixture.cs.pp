@@ -6,7 +6,7 @@ namespace $rootnamespace$
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
-    public abstract class AbstractSetup
+    public abstract class BaseTestFixture
     {
         protected IApp app;
         protected Platform platform;
@@ -14,7 +14,7 @@ namespace $rootnamespace$
         protected bool OnAndroid { get; set; }
         protected bool OniOS { get; set; }
 
-        protected AbstractSetup(Platform platform)
+        protected BaseTestFixture(Platform platform)
         {
             this.platform = platform;
         }
