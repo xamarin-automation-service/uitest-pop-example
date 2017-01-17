@@ -3,8 +3,8 @@
   <metadata>
     <id>Xamarin.UITest.POP</id>
     <version>0.0.1</version>
-    <authors>ethand</authors>
-    <owners>ethand</owners>
+    <authors>Ethan Dennis</authors>
+    <owners>Ethan Dennis</owners>
     <projectUrl>https://github.com/xamarin-automation-service/uitest-pop-example</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Xamarin.UITest helper classes for implementing the page object pattern
