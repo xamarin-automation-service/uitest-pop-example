@@ -2,9 +2,9 @@
 using NUnit.Framework;
 using Xamarin.UITest;
 
-namespace CrossPlatform
+namespace Xamarin.UITest.POPSample
 {
-    public class iOSOnlyTests : AbstractSetup
+    public class iOSOnlyTests : BaseTestFixture
     {
         public iOSOnlyTests(Platform platform)
             : base(platform)

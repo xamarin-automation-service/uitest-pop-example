@@ -6,7 +6,7 @@ using Xamarin.UITest;
 // Aliases Func<AppQuery, AppQuery> with Query
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
 
-namespace CrossPlatform
+namespace Xamarin.UITest.POPSample
 {
     public class TaskDetailsPage : BasePage
     {

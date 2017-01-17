@@ -2,7 +2,7 @@
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
-namespace CrossPlatform
+namespace Xamarin.UITest.POPSample
 {
     public class Trait
     {
@@ -13,7 +13,7 @@ namespace CrossPlatform
         {
             get
             {
-                switch (AppInitializer.Platform)
+                switch (AppManager.Platform)
                 {
                     case Platform.Android:
                         return Android;

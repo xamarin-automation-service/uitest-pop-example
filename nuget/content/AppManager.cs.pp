@@ -3,7 +3,7 @@ using Xamarin.UITest;
 
 namespace $rootnamespace$
 {
-    static class AppInitializer
+    static class AppManager
     {
         static IApp app;
         public static IApp App
@@ -11,7 +11,7 @@ namespace $rootnamespace$
             get
             {
                 if (app == null)
-                    throw new NullReferenceException("'AppInitializer.App' not set. Call 'AppInitializer.StartApp(platform)' before trying to access it.");
+                    throw new NullReferenceException("'AppManager.App' not set. Call 'AppManager.StartApp(platform)' before trying to access it.");
                 return app;
             }
         }
@@ -22,14 +22,14 @@ namespace $rootnamespace$
             get
             {
                 if (platform == null)
-                    throw new NullReferenceException("'AppInitializer.Platform' not set. Call 'AppInitializer.StartApp(platform)' before trying to access it.");
+                    throw new NullReferenceException("'AppManager.Platform' not set. Call 'AppManager.StartApp(platform)' before trying to access it.");
                 return platform.Value;
             }
         }
 
         public static IApp StartApp(Platform platform)
         {
-            AppInitializer.platform = platform;
+            AppManager.platform = platform;
 
             if (platform == Platform.Android)
             {

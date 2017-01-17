@@ -22,10 +22,10 @@ namespace $rootnamespace$
         [SetUp]
         public virtual void BeforeEachTest()
         {
-            app = AppInitializer.StartApp(platform);
+            app = AppManager.StartApp(platform);
 
-            OnAndroid = AppInitializer.Platform == Platform.Android;
-            OniOS = AppInitializer.Platform == Platform.iOS;
+            OnAndroid = AppManager.Platform == Platform.Android;
+            OniOS = AppManager.Platform == Platform.iOS;
         }
     }
 }

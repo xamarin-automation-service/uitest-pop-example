@@ -2,9 +2,9 @@
 using NUnit.Framework;
 using Xamarin.UITest;
 
-namespace CrossPlatform
+namespace Xamarin.UITest.POPSample
 {
-    public class TaskyTests : AbstractSetup
+    public class TaskyTests : BaseTestFixture
     {
         public TaskyTests(Platform platform)
             : base(platform)

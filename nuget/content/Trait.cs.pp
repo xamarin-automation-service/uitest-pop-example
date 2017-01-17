@@ -13,7 +13,7 @@ namespace $rootnamespace$
         {
             get
             {
-                switch (AppInitializer.Platform)
+                switch (AppManager.Platform)
                 {
                     case Platform.Android:
                         return Android;

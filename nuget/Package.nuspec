@@ -21,8 +21,8 @@
     </dependencies>
   </metadata>
   <files>
-      <file src="content/AbstractSetup.cs.pp" target="content/portable-net45/AbstractSetup.cs.pp" />
-      <file src="content/AppInitializer.txt.pp" target="content/portable-net45/AppInitializer.txt.pp"/>
+      <file src="content/BaseTestFixture.cs.pp" target="content/portable-net45/BaseTestFixture.cs.pp" />
+      <file src="content/AppManager.cs.pp" target="content/portable-net45/AppManager.cs.pp"/>
       <file src="content/BasePage.cs.pp" target="content/portable-net45/BasePage.cs.pp"/>
       <file src="content/Trait.cs.pp" target="content/portable-net45/Trait.cs.pp"/>
       <file src="readme.txt" target="readme.txt"/>

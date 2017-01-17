@@ -1,9 +1,9 @@
 ﻿using System;
 using Xamarin.UITest;
 
-namespace CrossPlatform
+namespace Xamarin.UITest.POPSample
 {
-    static class AppInitializer
+    static class AppManager
     {
         const string ApkPath = "../../../Binaries/TaskyDroid.apk";
         const string AppPath = "../../../Binaries/TaskyiOS.app";
@@ -33,7 +33,7 @@ namespace CrossPlatform
 
         public static IApp StartApp(Platform platform)
         {
-            AppInitializer.platform = platform;
+            AppManager.platform = platform;
 
             if (platform == Platform.Android)
             {

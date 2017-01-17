@@ -16,10 +16,10 @@ namespace $rootnamespace$
 
         protected BasePage()
         {
-            app = AppInitializer.App;
+            app = AppManager.App;
 
-            OnAndroid = AppInitializer.Platform == Platform.Android;
-            OniOS = AppInitializer.Platform == Platform.iOS;
+            OnAndroid = AppManager.Platform == Platform.Android;
+            OniOS = AppManager.Platform == Platform.iOS;
 
             if (Trait.Current == null)
                 throw new NullReferenceException("Trait not set");
