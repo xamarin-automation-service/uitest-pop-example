@@ -18,17 +18,23 @@ _*If you want to run this on a physical iOS device, you will need to clone and b
 
 ## POP Implementation
 
-1. Create a new test project or open up your existing one.
+1. Create a new test project or open up your existing one
 
-1. Install the [Xamarin.UITest.POP NuGet package](https://www.nuget.org/packages/Xamarin.UITest.POP), which will add all the necessary files to your project. Alternatively, you can manually add [AppManager.cs](Xamarin.UITest.POPSample/AppManager.cs), [BaseTestFixture.cs](Xamarin.UITest.POPSample/BaseTestFixture.cs), [BasePage.cs](Xamarin.UITest.POPSample/BasePage.cs), and [Trait.cs](Xamarin.UITest.POPSample/Trait.cs) to your project (making sure to change the namespaces to match your own).
+1. Install the [Xamarin.UITest.POP NuGet package](https://www.nuget.org/packages/Xamarin.UITest.POP), which will add all the necessary files to your project
 
-1. Create a folder for your test classes and a folder for your page classes. This will help keep things organized.
+    Alternatively, you can manually add the following files to your project (making sure to change the namespaces to match your own):
+    * [AppManager.cs](Xamarin.UITest.POPSample/AppManager.cs)
+    * [BaseTestFixture.cs](Xamarin.UITest.POPSample/BaseTestFixture.cs)
+    * [BasePage.cs](Xamarin.UITest.POPSample/BasePage.cs)
+    * [Trait.cs](Xamarin.UITest.POPSample/Trait.cs)
 
-1. Create page object classes that inherit from `BasePage`. Make one for each page in your app.
+1. Remove AppInitializer.cs (if it exists)
 
-1. Make sure that your test fixture classes inherit from `BaseTestFixture`.
+1. Ensure page object classes inherit from `BasePage`
 
-1. From your tests, call methods on the page objects to automate your app.
+1. Ensure test fixture classes inherit from `BaseTestFixture`
+
+For more detailed instructions check out the [wiki](https://github.com/xamarin-automation-service/uitest-pop-example/wiki/POP-Implementation).
 
 ## Contributors
 
