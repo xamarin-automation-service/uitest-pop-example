@@ -1,11 +1,12 @@
 ﻿using System;
 using NUnit.Framework;
 using Xamarin.UITest;
+using Xamarin.UITest.Queries;
 
 // Aliases Func<AppQuery, AppQuery> with Query
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
 
-namespace CrossPlatform
+namespace Xamarin.UITest.POPSample
 {
     public class TaskListPage : BasePage
     {
@@ -15,8 +16,13 @@ namespace CrossPlatform
         readonly Func<string, Query> checkMarkForTask;
         readonly Func<string, Query> taskListItem;
 
+        protected override Trait Trait => new Trait
+        {
+            Android = x => x.Marked("menu_add_task"),
+            iOS = x => x.Marked("Tasky")
+        };
+
         public TaskListPage()
-            : base(x => x.Marked("menu_add_task"), x => x.Marked("Tasky"))
         {
             if (OnAndroid)
             {

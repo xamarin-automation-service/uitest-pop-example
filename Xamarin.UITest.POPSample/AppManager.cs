@@ -1,9 +1,9 @@
 ﻿using System;
 using Xamarin.UITest;
 
-namespace CrossPlatform
+namespace Xamarin.UITest.POPSample
 {
-    static class AppInitializer
+    static class AppManager
     {
         const string ApkPath = "../../../Binaries/TaskyDroid.apk";
         const string AppPath = "../../../Binaries/TaskyiOS.app";
@@ -20,8 +20,21 @@ namespace CrossPlatform
             }
         }
 
+        static Platform? platform;
+        public static Platform Platform
+        {
+            get
+            {
+                if (platform == null)
+                    throw new NullReferenceException("'AppInitializer.Platform' not set. Call 'AppInitializer.StartApp(platform)' before trying to access it.");
+                return platform.Value;
+            }
+        }
+
         public static IApp StartApp(Platform platform)
         {
+            AppManager.platform = platform;
+
             if (platform == Platform.Android)
             {
                 app = ConfigureApp

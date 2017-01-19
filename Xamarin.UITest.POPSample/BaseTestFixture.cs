@@ -1,14 +1,12 @@
 ﻿using System;
 using NUnit.Framework;
 using Xamarin.UITest;
-using Xamarin.UITest.Android;
-using Xamarin.UITest.iOS;
 
-namespace CrossPlatform
+namespace Xamarin.UITest.POPSample
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
-    public abstract class AbstractSetup
+    public abstract class BaseTestFixture
     {
         protected IApp app;
         protected Platform platform;
@@ -16,7 +14,7 @@ namespace CrossPlatform
         protected bool OnAndroid { get; set; }
         protected bool OniOS { get; set; }
 
-        public AbstractSetup(Platform platform)
+        protected BaseTestFixture(Platform platform)
         {
             this.platform = platform;
         }
@@ -24,10 +22,10 @@ namespace CrossPlatform
         [SetUp]
         public virtual void BeforeEachTest()
         {
-            app = AppInitializer.StartApp(platform);
+            app = AppManager.StartApp(platform);
 
-            OnAndroid = app.GetType() == typeof(AndroidApp);
-            OniOS = app.GetType() == typeof(iOSApp);
+            OnAndroid = AppManager.Platform == Platform.Android;
+            OniOS = AppManager.Platform == Platform.iOS;
         }
 
         protected void EnterTask(string name, string notes = null)
