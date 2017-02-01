@@ -7,8 +7,7 @@ namespace $rootnamespace$
 {
     public abstract class BasePage
     {
-        protected readonly IApp app;
-
+        protected IApp App { get; private set; }
         protected bool OnAndroid { get; private set; }
         protected bool OniOS { get; private set; }
 
@@ -16,19 +15,15 @@ namespace $rootnamespace$
 
         protected BasePage()
         {
-            app = AppManager.App;
-
+            App = AppManager.App;
             OnAndroid = AppManager.Platform == Platform.Android;
             OniOS = AppManager.Platform == Platform.iOS;
-
-            if (Trait.Current == null)
-                throw new NullReferenceException("Trait not set");
 
             InitializeCommonQueries();
 
             AssertOnPage(TimeSpan.FromSeconds(30));
 
-            app.Screenshot("On " + this.GetType().Name);
+            App.Screenshot("On " + this.GetType().Name);
         }
 
         /// <summary>
@@ -40,9 +35,9 @@ namespace $rootnamespace$
             var message = "Unable to verify on page: " + this.GetType().Name;
 
             if (timeout == null)
-                Assert.IsNotEmpty(app.Query(Trait.Current), message);
+                Assert.IsNotEmpty(App.Query(Trait.Current), message);
             else
-                Assert.DoesNotThrow(() => app.WaitForElement(Trait.Current, timeout: timeout), message);
+                Assert.DoesNotThrow(() => App.WaitForElement(Trait.Current, timeout: timeout), message);
         }
 
         /// <summary>
@@ -54,7 +49,7 @@ namespace $rootnamespace$
             timeout = timeout ?? TimeSpan.FromSeconds(2);
             var message = "Unable to verify *not* on page: " + this.GetType().Name;
 
-            Assert.DoesNotThrow(() => app.WaitForNoElement(Trait.Current, timeout: timeout), message);
+            Assert.DoesNotThrow(() => App.WaitForNoElement(Trait.Current, timeout: timeout), message);
         }
 
         #region CommonPageActions

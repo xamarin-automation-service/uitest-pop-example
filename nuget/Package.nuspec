@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Xamarin.UITest.POP</id>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <authors>Ethan Dennis</authors>
     <owners>Ethan Dennis</owners>
     <projectUrl>https://github.com/xamarin-automation-service/uitest-pop-example</projectUrl>
@@ -13,11 +13,12 @@
 
       *The package is safe to remove after the generated files have been added
     </description>
-    <releaseNotes>Initial release</releaseNotes>
+    <releaseNotes>Updates to Trait class and property names</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Xamarin.UITest PageObjectPattern</tags>
     <dependencies>
       <dependency id="Xamarin.UITest" version="2.0" />
+      <dependency id="NUnit" version="2.6.4" />
     </dependencies>
   </metadata>
   <files>

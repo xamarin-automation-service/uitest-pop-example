@@ -42,39 +42,39 @@ namespace Xamarin.UITest.POPSample
 
         public void GoToAddTask()
         {
-            app.WaitForElement(addTaskButton);
-            app.Screenshot("Tapping add task button");
-            app.Tap(addTaskButton);
+            App.WaitForElement(addTaskButton);
+            App.Screenshot("Tapping add task button");
+            App.Tap(addTaskButton);
         }
 
         public void SelectTask(string name = null)
         {
-            app.WaitForElement(firstTask);
+            App.WaitForElement(firstTask);
 
             if (name == null)
             {
-                app.Screenshot("Selecting first task");
-                app.Tap(firstTask);
+                App.Screenshot("Selecting first task");
+                App.Tap(firstTask);
             }
             else
             {
-                app.Screenshot($"Selecting task: {name}");
-                app.Tap(name);
+                App.Screenshot($"Selecting task: {name}");
+                App.Tap(name);
             }
         }
 
         public TaskListPage VerifyTaskExists(string name)
         {
-            app.WaitForElement(name);
-            app.Screenshot($"Task exists: {name}");
+            App.WaitForElement(name);
+            App.Screenshot($"Task exists: {name}");
 
             return this;
         }
 
         public TaskListPage VerifyTaskDoesNotExist(string name)
         {
-            app.WaitForNoElement(name);
-            app.Screenshot($"Task does not exist: {name}");
+            App.WaitForNoElement(name);
+            App.Screenshot($"Task does not exist: {name}");
 
             return this;
         }
@@ -86,13 +86,13 @@ namespace Xamarin.UITest.POPSample
             {
                 if (done)
                 {
-                    app.WaitForElement(checkMarkForTask(name));
-                    app.Screenshot("Task is done");
+                    App.WaitForElement(checkMarkForTask(name));
+                    App.Screenshot("Task is done");
                 }
                 else
                 {
-                    app.WaitForNoElement(checkMarkForTask(name));
-                    app.Screenshot("Task is not done");
+                    App.WaitForNoElement(checkMarkForTask(name));
+                    App.Screenshot("Task is not done");
                 }
             }
 
@@ -104,10 +104,10 @@ namespace Xamarin.UITest.POPSample
             // Method not applicable to Android
             if (OniOS)
             {
-                app.SwipeRightToLeft(taskListItem(name));
-                app.Tap(deleteButton);
+                App.SwipeRightToLeft(taskListItem(name));
+                App.Tap(deleteButton);
 
-                app.Screenshot($"Task deleted: '{name}'");
+                App.Screenshot($"Task deleted: '{name}'");
             }
 
             return this;

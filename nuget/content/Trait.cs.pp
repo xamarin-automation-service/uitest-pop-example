@@ -13,15 +13,17 @@ namespace $rootnamespace$
         {
             get
             {
-                switch (AppManager.Platform)
+                if (AppManager.Platform == Platform.Android && Android != null)
                 {
-                    case Platform.Android:
-                        return Android;
-                    case Platform.iOS:
-                        return iOS;
-                    default:
-                        throw new PlatformNotSupportedException();
+                    return Android;
                 }
+
+                if (AppManager.Platform == Platform.iOS && iOS != null)
+                {
+                    return iOS;
+                }
+
+                throw new NullReferenceException("Trait not set for current platform");
             }
         }
     }

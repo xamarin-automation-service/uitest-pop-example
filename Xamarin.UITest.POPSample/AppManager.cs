@@ -1,5 +1,4 @@
 ﻿using System;
-using Xamarin.UITest;
 
 namespace Xamarin.UITest.POPSample
 {
