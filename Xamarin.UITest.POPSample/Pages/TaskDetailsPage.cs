@@ -16,11 +16,11 @@ namespace Xamarin.UITest.POPSample
         readonly Query deleteButton;
         readonly Query doneIndicator;
 
-        protected override Trait Trait
+        protected override PlatformQuery Trait
         {
             get
             {
-                return new Trait
+                return new PlatformQuery
                 {
                     Android = x => x.Marked("menu_save_task"),
                     iOS = x => x.Marked("Task Details")

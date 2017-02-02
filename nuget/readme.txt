@@ -2,7 +2,7 @@ Xamarin.UITest.POP has created the following files (you can now remove this NuGe
 - AppManager.cs
 - BasePage.cs
 - BaseTestFixture.cs
-- Trait.cs
+- PlatformQuery.cs
 
 To use:
 - Remove AppInitializer.cs (if it exists)

@@ -10,27 +10,22 @@ namespace $rootnamespace$
     {
         readonly Platform platform;
 
-        protected IApp App { get; private set; }
-        protected bool OnAndroid { get; private set; }
-        protected bool OniOS { get; private set; }
+        protected IApp App => AppManager.App;
+        protected bool OnAndroid => AppManager.Platform == Platform.Android;
+        protected bool OniOS => AppManager.Platform == Platform.iOS;
 
         protected BaseTestFixture(Platform platform)
         {
             this.platform = platform;
         }
 
-        protected void StartApp()
-        {
-            App = AppManager.StartApp(platform);
-
-            OnAndroid = AppManager.Platform == Platform.Android;
-            OniOS = AppManager.Platform == Platform.iOS;
-        }
-
         [SetUp]
         public virtual void BeforeEachTest()
         {
-            StartApp();
+            AppManager.StartApp(platform);
         }
+
+        // You can edit this file to define functionality that is common across many or all tests.
+        // For example, you could add a method here to log in or dismiss a welcome dialogue.
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.UITest;
 
 namespace Xamarin.UITest.POPSample
 {
@@ -14,7 +15,7 @@ namespace Xamarin.UITest.POPSample
             get
             {
                 if (app == null)
-                    throw new NullReferenceException("'AppInitializer.App' not set. Call 'AppInitializer.StartApp(platform)' before trying to access it.");
+                    throw new NullReferenceException("'AppManager.App' not set. Call 'AppManager.StartApp(platform)' before trying to access it.");
                 return app;
             }
         }
@@ -25,12 +26,12 @@ namespace Xamarin.UITest.POPSample
             get
             {
                 if (platform == null)
-                    throw new NullReferenceException("'AppInitializer.Platform' not set. Call 'AppInitializer.StartApp(platform)' before trying to access it.");
+                    throw new NullReferenceException("'AppManager.Platform' not set. Call 'AppManager.StartApp(platform)' before trying to access it.");
                 return platform.Value;
             }
         }
 
-        public static IApp StartApp(Platform platform)
+        public static void StartApp(Platform platform)
         {
             AppManager.platform = platform;
 
@@ -38,20 +39,21 @@ namespace Xamarin.UITest.POPSample
             {
                 app = ConfigureApp
                     .Android
+                    // Used to run a .apk file:
                     .ApkFile(ApkPath)
                     .StartApp();
             }
-            else
+
+            if (platform == Platform.iOS)
             {
                 app = ConfigureApp
                     .iOS
+                    // Used to run a .app file on an ios simulator:
                     .AppBundle(AppPath)
-                    // This is used to run an ipa on a physical ios device
+                    // Used to run a .ipa file on a physical ios device:
                     //.InstalledApp(ipaBundleId)
                     .StartApp();
             }
-
-            return app;
         }
     }
 }
