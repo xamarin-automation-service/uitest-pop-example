@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Xamarin.UITest.POP</id>
-    <version>0.0.2</version>
+    <version>1.0.0</version>
     <authors>Ethan Dennis</authors>
     <owners>Ethan Dennis</owners>
     <projectUrl>https://github.com/xamarin-automation-service/uitest-pop-example</projectUrl>
