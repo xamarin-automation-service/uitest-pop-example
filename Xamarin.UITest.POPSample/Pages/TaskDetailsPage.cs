@@ -53,33 +53,33 @@ namespace Xamarin.UITest.POPSample
         {
             if (OnAndroid)
             {
-                App.EnterText(nameField, name);
+                app.EnterText(nameField, name);
 
                 if (notes != null)
-                    App.EnterText(notesField, notes);
+                    app.EnterText(notesField, notes);
             }
 
             if (OniOS)
             {
-                App.EnterText(nameField, name);
-                App.PressEnter();
+                app.EnterText(nameField, name);
+                app.PressEnter();
 
                 if (notes != null)
-                    App.EnterText(notesField, notes);
+                    app.EnterText(notesField, notes);
 
-                App.PressEnter();
+                app.PressEnter();
             }
 
-            App.Screenshot($"Task \"{name}\" entered");
+            app.Screenshot($"Task \"{name}\" entered");
 
             return this;
         }
 
         public TaskDetailsPage TapDone()
         {
-            App.DismissKeyboard();
-            App.Tap(doneIndicator);
-            App.Screenshot("Set Done");
+            app.DismissKeyboard();
+            app.Tap(doneIndicator);
+            app.Screenshot("Set Done");
 
             return this;
         }
@@ -88,14 +88,14 @@ namespace Xamarin.UITest.POPSample
         {
             if (OnAndroid)
             {
-                Assert.True((bool)App.Query(x => doneIndicator(x).Invoke("isChecked")).First());
-                App.Screenshot("Task completed");
+                Assert.True((bool)app.Query(x => doneIndicator(x).Invoke("isChecked")).First());
+                app.Screenshot("Task completed");
             }
 
             if (OniOS)
             {
-                Assert.AreEqual(1, App.Query(x => doneIndicator(x).Invoke("isOn")).First());
-                App.Screenshot("Task completed");
+                Assert.AreEqual(1, app.Query(x => doneIndicator(x).Invoke("isOn")).First());
+                app.Screenshot("Task completed");
             }
 
             return this;
@@ -103,14 +103,14 @@ namespace Xamarin.UITest.POPSample
 
         public void Save()
         {
-            App.Screenshot("Tapping save");
-            App.Tap(saveButton);
+            app.Screenshot("Tapping save");
+            app.Tap(saveButton);
         }
 
         public void Delete()
         {
-            App.Screenshot("Tapping delete");
-            App.Tap(deleteButton);
+            app.Screenshot("Tapping delete");
+            app.Tap(deleteButton);
         }
     }
 }

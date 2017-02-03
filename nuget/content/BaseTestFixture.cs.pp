@@ -10,7 +10,7 @@ namespace $rootnamespace$
     {
         readonly Platform platform;
 
-        protected IApp App => AppManager.App;
+        protected IApp app => AppManager.App;
         protected bool OnAndroid => AppManager.Platform == Platform.Android;
         protected bool OniOS => AppManager.Platform == Platform.iOS;
 

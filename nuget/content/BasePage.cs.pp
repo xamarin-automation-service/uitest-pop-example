@@ -6,7 +6,7 @@ namespace $rootnamespace$
 {
     public abstract class BasePage
     {
-        protected IApp App => AppManager.App;
+        protected IApp app => AppManager.App;
         protected bool OnAndroid => AppManager.Platform == Platform.Android;
         protected bool OniOS => AppManager.Platform == Platform.iOS;
 
@@ -15,7 +15,7 @@ namespace $rootnamespace$
         protected BasePage()
         {
             AssertOnPage(TimeSpan.FromSeconds(30));
-            App.Screenshot("On " + this.GetType().Name);
+            app.Screenshot("On " + this.GetType().Name);
         }
 
         /// <summary>
@@ -27,9 +27,9 @@ namespace $rootnamespace$
             var message = "Unable to verify on page: " + this.GetType().Name;
 
             if (timeout == null)
-                Assert.IsNotEmpty(App.Query(Trait.Current), message);
+                Assert.IsNotEmpty(app.Query(Trait.Current), message);
             else
-                Assert.DoesNotThrow(() => App.WaitForElement(Trait.Current, timeout: timeout), message);
+                Assert.DoesNotThrow(() => app.WaitForElement(Trait.Current, timeout: timeout), message);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace $rootnamespace$
             timeout = timeout ?? TimeSpan.FromSeconds(5);
             var message = "Unable to verify *not* on page: " + this.GetType().Name;
 
-            Assert.DoesNotThrow(() => App.WaitForNoElement(Trait.Current, timeout: timeout), message);
+            Assert.DoesNotThrow(() => app.WaitForNoElement(Trait.Current, timeout: timeout), message);
         }
 
         // You can edit this file to define functionality that is common across many or all pages in your app.

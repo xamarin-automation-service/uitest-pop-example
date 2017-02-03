@@ -17,7 +17,7 @@ namespace Xamarin.UITest.POPSample
             if (TestEnvironment.IsTestCloud)
                 Assert.Ignore("Local only");
 
-            App.Repl();
+            app.Repl();
         }
 
         [Test]
