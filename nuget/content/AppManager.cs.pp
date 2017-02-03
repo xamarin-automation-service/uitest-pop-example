@@ -27,7 +27,7 @@ namespace $rootnamespace$
             }
         }
 
-        public static IApp StartApp(Platform platform)
+        public static void StartApp(Platform platform)
         {
             AppManager.platform = platform;
 
@@ -35,16 +35,21 @@ namespace $rootnamespace$
             {
                 app = ConfigureApp
                     .Android
-                    .StartApp();
-            }
-            else
-            {
-                app = ConfigureApp
-                    .iOS
+                    // Used to run a .apk file:
+                    //.ApkFile("path/to/file.apk")
                     .StartApp();
             }
 
-            return app;
+            if (platform == Platform.iOS)
+            {
+                app = ConfigureApp
+                    .iOS
+                    // Used to run a .app file on an ios simulator:
+                    //.AppBundle("path/to/file.app")
+                    // Used to run a .ipa file on a physical ios device:
+                    //.InstalledApp("com.company.bundleid")
+                    .StartApp();
+            }
         }
     }
 }

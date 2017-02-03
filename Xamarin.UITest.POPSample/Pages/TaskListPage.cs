@@ -16,7 +16,7 @@ namespace Xamarin.UITest.POPSample
         readonly Func<string, Query> checkMarkForTask;
         readonly Func<string, Query> taskListItem;
 
-        protected override Trait Trait => new Trait
+        protected override PlatformQuery Trait => new PlatformQuery
         {
             Android = x => x.Marked("menu_add_task"),
             iOS = x => x.Marked("Tasky")

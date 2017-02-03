@@ -8,11 +8,11 @@ namespace $rootnamespace$
     [TestFixture(Platform.iOS)]
     public abstract class BaseTestFixture
     {
-        protected IApp app;
-        protected Platform platform;
+        readonly Platform platform;
 
-        protected bool OnAndroid { get; set; }
-        protected bool OniOS { get; set; }
+        protected IApp app => AppManager.App;
+        protected bool OnAndroid => AppManager.Platform == Platform.Android;
+        protected bool OniOS => AppManager.Platform == Platform.iOS;
 
         protected BaseTestFixture(Platform platform)
         {
@@ -22,10 +22,10 @@ namespace $rootnamespace$
         [SetUp]
         public virtual void BeforeEachTest()
         {
-            app = AppManager.StartApp(platform);
-
-            OnAndroid = AppManager.Platform == Platform.Android;
-            OniOS = AppManager.Platform == Platform.iOS;
+            AppManager.StartApp(platform);
         }
+
+        // You can edit this file to define functionality that is common across many or all tests.
+        // For example, you could add a method here to log in or dismiss a welcome dialogue.
     }
 }

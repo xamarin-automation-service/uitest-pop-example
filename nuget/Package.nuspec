@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Xamarin.UITest.POP</id>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <authors>Ethan Dennis</authors>
     <owners>Ethan Dennis</owners>
     <projectUrl>https://github.com/xamarin-automation-service/uitest-pop-example</projectUrl>
@@ -13,18 +13,19 @@
 
       *The package is safe to remove after the generated files have been added
     </description>
-    <releaseNotes>Initial release</releaseNotes>
+    <releaseNotes>Updated PlatformQuery and simplified Base classes slightly</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Xamarin.UITest PageObjectPattern</tags>
     <dependencies>
       <dependency id="Xamarin.UITest" version="2.0" />
+      <dependency id="NUnit" version="2.6.4" />
     </dependencies>
   </metadata>
   <files>
       <file src="content/BaseTestFixture.cs.pp" target="content/portable-net45/BaseTestFixture.cs.pp" />
       <file src="content/AppManager.cs.pp" target="content/portable-net45/AppManager.cs.pp"/>
       <file src="content/BasePage.cs.pp" target="content/portable-net45/BasePage.cs.pp"/>
-      <file src="content/Trait.cs.pp" target="content/portable-net45/Trait.cs.pp"/>
+      <file src="content/PlatformQuery.cs.pp" target="content/portable-net45/PlatformQuery.cs.pp"/>
       <file src="readme.txt" target="readme.txt"/>
   </files>
 </package>
