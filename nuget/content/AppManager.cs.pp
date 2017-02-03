@@ -11,7 +11,7 @@ namespace $rootnamespace$
             get
             {
                 if (app == null)
-                    throw new NullReferenceException("'AppManager.App' not set. Call 'AppManager.StartApp(platform)' before trying to access it.");
+                    throw new NullReferenceException("'AppManager.App' not set. Call 'AppManager.StartApp()' before trying to access it.");
                 return app;
             }
         }
@@ -22,16 +22,19 @@ namespace $rootnamespace$
             get
             {
                 if (platform == null)
-                    throw new NullReferenceException("'AppManager.Platform' not set. Call 'AppManager.StartApp(platform)' before trying to access it.");
+                    throw new NullReferenceException("'AppManager.Platform' not set.");
                 return platform.Value;
+            }
+
+            set
+            {
+                platform = value;
             }
         }
 
-        public static void StartApp(Platform platform)
+        public static void StartApp()
         {
-            AppManager.platform = platform;
-
-            if (platform == Platform.Android)
+            if (Platform == Platform.Android)
             {
                 app = ConfigureApp
                     .Android
@@ -40,7 +43,7 @@ namespace $rootnamespace$
                     .StartApp();
             }
 
-            if (platform == Platform.iOS)
+            if (Platform == Platform.iOS)
             {
                 app = ConfigureApp
                     .iOS

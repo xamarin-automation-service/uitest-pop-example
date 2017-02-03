@@ -8,21 +8,19 @@ namespace Xamarin.UITest.POPSample
     [TestFixture(Platform.iOS)]
     public abstract class BaseTestFixture
     {
-        readonly Platform platform;
-
         protected IApp app => AppManager.App;
         protected bool OnAndroid => AppManager.Platform == Platform.Android;
         protected bool OniOS => AppManager.Platform == Platform.iOS;
 
         protected BaseTestFixture(Platform platform)
         {
-            this.platform = platform;
+            AppManager.Platform = platform;
         }
 
         [SetUp]
         public virtual void BeforeEachTest()
         {
-            AppManager.StartApp(platform);
+            AppManager.StartApp();
         }
 
         protected void EnterTask(string name, string notes = null)
