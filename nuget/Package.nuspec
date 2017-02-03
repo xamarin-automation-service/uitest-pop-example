@@ -13,7 +13,7 @@
 
       *The package is safe to remove after the generated files have been added
     </description>
-    <releaseNotes>Updates to PlatformQuery class and property names</releaseNotes>
+    <releaseNotes>Updated PlatformQuery and simplified Base classes slightly</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Xamarin.UITest PageObjectPattern</tags>
     <dependencies>
