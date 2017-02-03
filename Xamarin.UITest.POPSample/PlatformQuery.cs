@@ -35,10 +35,5 @@ namespace Xamarin.UITest.POPSample
                 return current;
             }
         }
-
-        public static implicit operator Func<AppQuery, AppQuery>(PlatformQuery t)
-        {
-            return t.Current;
-        }
     }
 }
