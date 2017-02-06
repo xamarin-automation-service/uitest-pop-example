@@ -26,7 +26,7 @@ _*If you want to run this on a physical iOS device, you will need to clone and b
     * [AppManager.cs](Xamarin.UITest.POPSample/AppManager.cs)
     * [BaseTestFixture.cs](Xamarin.UITest.POPSample/BaseTestFixture.cs)
     * [BasePage.cs](Xamarin.UITest.POPSample/BasePage.cs)
-    * [Trait.cs](Xamarin.UITest.POPSample/Trait.cs)
+    * [PlatformQuery.cs](Xamarin.UITest.POPSample/PlatformQuery.cs)
 
 1. Remove AppInitializer.cs (if it exists)
 
