@@ -47,7 +47,9 @@ namespace Xamarin.UITest.POPSample
         {
             if (OnAndroid)
             {
-                app.EnterText(nameField, name);
+                app.Tap(nameField);
+                app.EnterText(name);
+                app.DismissKeyboard();
 
                 if (notes != null)
                     app.EnterText(notesField, notes);

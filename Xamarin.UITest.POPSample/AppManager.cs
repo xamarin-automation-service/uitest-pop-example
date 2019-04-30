@@ -1,12 +1,12 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using Xamarin.UITest;
 
 namespace Xamarin.UITest.POPSample
 {
     static class AppManager
     {
-        const string ApkPath = "../../../Binaries/TaskyDroid.apk";
-        const string AppPath = "../../../Binaries/TaskyiOS.app";
         const string IpaBundleId = "com.xamarin.samples.taskytouch";
 
         static IApp app;
@@ -38,12 +38,15 @@ namespace Xamarin.UITest.POPSample
 
         public static void StartApp()
         {
+            string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string binariesFolder = Path.Combine(assemblyFolder, "..", "..", "..", "Binaries");
+
             if (Platform == Platform.Android)
             {
                 app = ConfigureApp
                     .Android
                     // Used to run a .apk file:
-                    .ApkFile(ApkPath)
+                    .ApkFile(Path.Combine(binariesFolder, "TaskyDroid.apk"))
                     .StartApp();
             }
 
@@ -52,7 +55,7 @@ namespace Xamarin.UITest.POPSample
                 app = ConfigureApp
                     .iOS
                     // Used to run a .app file on an ios simulator:
-                    .AppBundle(AppPath)
+                    .AppBundle(Path.Combine(binariesFolder, "TaskyiOS.app"))
                     // Used to run a .ipa file on a physical ios device:
                     //.InstalledApp(ipaBundleId)
                     .StartApp();
